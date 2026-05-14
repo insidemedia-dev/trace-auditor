@@ -91,8 +91,8 @@ class TraceAuditResult(BaseModel):
 - [ ] CronJob runs reliably every 15 minutes without manual intervention
 - [x] Successfully connects to Langfuse and fetches recent error traces
 - [x] Pydantic AI produces valid, structured JSON output for every analyzed trace
-- [ ] Root cause classifications are meaningful and actionable (not generic)
-- [ ] Resource usage stays within defined limits (no OOM kills)
+- [x] Root cause classifications are meaningful and actionable (not generic)
+- [x] Resource usage stays within defined limits (no OOM kills)
 - [ ] Zero impact on cluster stability — fully transient workload
 
 ## Risk Assessment
@@ -145,9 +145,9 @@ class TraceAuditResult(BaseModel):
 - [x] Container image built and pushed to registry
 
 ### Milestone 5: Integration Testing & Validation
-- [ ] End-to-end test with real Langfuse traces on dss-k3s-01
-- [ ] Verify JSON output appears in `kubectl logs`
-- [ ] Confirm resource usage stays within limits across multiple runs
+- [x] End-to-end test with real Langfuse traces on dss-k3s-01
+- [x] Verify JSON output appears in `kubectl logs`
+- [x] Confirm resource usage stays within limits across multiple runs
 
 ### Milestone 6: Documentation & Operational Readiness
 - [ ] README with setup, configuration, and troubleshooting guide
