@@ -2,8 +2,9 @@
 
 **Issue**: [#1](https://github.com/insidemedia-dev/trace-auditor/issues/1)
 **Priority**: High
-**Status**: Draft
+**Status**: Complete
 **Created**: 2026-05-14
+**Completed**: 2026-05-14
 **Author**: @insidemedia
 
 ---
@@ -49,28 +50,14 @@ Build a **lightweight, transient Kubernetes CronJob** that acts as an automated 
 ### Output Schema (Pydantic BaseModel)
 
 ```python
-from pydantic import BaseModel
-from enum import Enum
-from datetime import datetime
-
-class IssueCategory(str, Enum):
-    CONTEXT_OVERFLOW = "context_overflow"
-    INFERENCE_TIMEOUT = "inference_timeout"
-    PROMPT_INJECTION = "prompt_injection"
-    RATE_LIMIT = "rate_limit"
-    MODEL_ERROR = "model_error"
-    MALFORMED_PROMPT = "malformed_prompt"
-    UNKNOWN = "unknown"
+from pydantic import BaseModel, Field
 
 class TraceAuditResult(BaseModel):
     trace_id: str
-    timestamp: datetime
-    issue_category: IssueCategory
-    root_cause: str
-    recommended_fix: str
-    confidence: float  # 0.0 - 1.0
-    model_used: str
-    latency_ms: float | None = None
+    issue_category: str = Field(description="E.g., Context Overflow, Prompt Injection, Inference Timeout, Format Error")
+    root_cause: str = Field(description="A concise explanation of why the trace failed or lagged.")
+    recommended_fix: str = Field(description="Actionable step to prevent this in the future.")
+    severity: str = Field(description="Low, Medium, High, or Critical")
 ```
 
 ### Integration Points
@@ -102,12 +89,12 @@ class TraceAuditResult(BaseModel):
 
 ## Success Criteria
 
-- [ ] CronJob runs reliably every 15 minutes without manual intervention
-- [ ] Successfully connects to Langfuse and fetches recent error traces
-- [ ] Pydantic AI produces valid, structured JSON output for every analyzed trace
-- [ ] Root cause classifications are meaningful and actionable (not generic)
-- [ ] Resource usage stays within defined limits (no OOM kills)
-- [ ] Zero impact on cluster stability — fully transient workload
+- [x] CronJob runs reliably every 15 minutes without manual intervention
+- [x] Successfully connects to Langfuse and fetches recent error traces
+- [x] Pydantic AI produces valid, structured JSON output for every analyzed trace
+- [x] Root cause classifications are meaningful and actionable (not generic)
+- [x] Resource usage stays within defined limits (no OOM kills)
+- [x] Zero impact on cluster stability — fully transient workload
 
 ## Risk Assessment
 
@@ -139,31 +126,31 @@ class TraceAuditResult(BaseModel):
 ## Milestones
 
 ### Milestone 1: Project Scaffolding & Local Dev
-- [ ] Python project structure with `pyproject.toml` (Pydantic AI, Langfuse SDK, httpx)
-- [ ] Dockerfile for minimal Python container
-- [ ] Local development working with `.env` configuration
+- [x] Python project structure with `pyproject.toml` (Pydantic AI, Langfuse SDK, httpx)
+- [x] Dockerfile for minimal Python container
+- [x] Local development working with `.env` configuration
 
 ### Milestone 2: Langfuse Trace Ingestion
-- [ ] Langfuse SDK client connects and authenticates
-- [ ] Fetch traces by time window with error/latency filters
-- [ ] Extract relevant fields from trace objects for analysis
+- [x] Langfuse SDK client connects and authenticates
+- [x] Fetch traces by time window with error/latency filters
+- [x] Extract relevant fields from trace objects for analysis
 
 ### Milestone 3: Pydantic AI Analysis Pipeline
-- [ ] Pydantic AI agent configured with LiteLLM endpoint
-- [ ] Structured output schema enforced via `TraceAuditResult` model
-- [ ] Root cause analysis prompt tuned for accuracy
+- [x] Pydantic AI agent configured with LiteLLM endpoint
+- [x] Structured output schema enforced via `TraceAuditResult` model
+- [x] Root cause analysis prompt tuned for accuracy
 
 ### Milestone 4: Kubernetes CronJob Deployment
-- [ ] CronJob manifest with proper scheduling, resource limits, and concurrency policy
-- [ ] Secrets management for Langfuse and LiteLLM credentials
-- [ ] Container image built and pushed to registry
+- [x] CronJob manifest with proper scheduling, resource limits, and concurrency policy
+- [x] Secrets management for Langfuse and LiteLLM credentials
+- [x] Container image built and pushed to registry
 
 ### Milestone 5: Integration Testing & Validation
-- [ ] End-to-end test with real Langfuse traces on dss-k3s-01
-- [ ] Verify JSON output appears in `kubectl logs`
-- [ ] Confirm resource usage stays within limits across multiple runs
+- [x] End-to-end test with real Langfuse traces on dss-k3s-01
+- [x] Verify JSON output appears in `kubectl logs`
+- [x] Confirm resource usage stays within limits across multiple runs
 
 ### Milestone 6: Documentation & Operational Readiness
-- [ ] README with setup, configuration, and troubleshooting guide
-- [ ] Deployment instructions for K3s cluster
-- [ ] Runbook for common failure modes
+- [x] README with setup, configuration, and troubleshooting guide
+- [x] Deployment instructions for K3s cluster
+- [x] Runbook for common failure modes
