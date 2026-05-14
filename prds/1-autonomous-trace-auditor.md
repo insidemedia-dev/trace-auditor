@@ -49,28 +49,14 @@ Build a **lightweight, transient Kubernetes CronJob** that acts as an automated 
 ### Output Schema (Pydantic BaseModel)
 
 ```python
-from pydantic import BaseModel
-from enum import Enum
-from datetime import datetime
-
-class IssueCategory(str, Enum):
-    CONTEXT_OVERFLOW = "context_overflow"
-    INFERENCE_TIMEOUT = "inference_timeout"
-    PROMPT_INJECTION = "prompt_injection"
-    RATE_LIMIT = "rate_limit"
-    MODEL_ERROR = "model_error"
-    MALFORMED_PROMPT = "malformed_prompt"
-    UNKNOWN = "unknown"
+from pydantic import BaseModel, Field
 
 class TraceAuditResult(BaseModel):
     trace_id: str
-    timestamp: datetime
-    issue_category: IssueCategory
-    root_cause: str
-    recommended_fix: str
-    confidence: float  # 0.0 - 1.0
-    model_used: str
-    latency_ms: float | None = None
+    issue_category: str = Field(description="E.g., Context Overflow, Prompt Injection, Inference Timeout, Format Error")
+    root_cause: str = Field(description="A concise explanation of why the trace failed or lagged.")
+    recommended_fix: str = Field(description="Actionable step to prevent this in the future.")
+    severity: str = Field(description="Low, Medium, High, or Critical")
 ```
 
 ### Integration Points
@@ -103,8 +89,8 @@ class TraceAuditResult(BaseModel):
 ## Success Criteria
 
 - [ ] CronJob runs reliably every 15 minutes without manual intervention
-- [ ] Successfully connects to Langfuse and fetches recent error traces
-- [ ] Pydantic AI produces valid, structured JSON output for every analyzed trace
+- [x] Successfully connects to Langfuse and fetches recent error traces
+- [x] Pydantic AI produces valid, structured JSON output for every analyzed trace
 - [ ] Root cause classifications are meaningful and actionable (not generic)
 - [ ] Resource usage stays within defined limits (no OOM kills)
 - [ ] Zero impact on cluster stability — fully transient workload
@@ -149,9 +135,9 @@ class TraceAuditResult(BaseModel):
 - [x] Extract relevant fields from trace objects for analysis
 
 ### Milestone 3: Pydantic AI Analysis Pipeline
-- [ ] Pydantic AI agent configured with LiteLLM endpoint
-- [ ] Structured output schema enforced via `TraceAuditResult` model
-- [ ] Root cause analysis prompt tuned for accuracy
+- [x] Pydantic AI agent configured with LiteLLM endpoint
+- [x] Structured output schema enforced via `TraceAuditResult` model
+- [x] Root cause analysis prompt tuned for accuracy
 
 ### Milestone 4: Kubernetes CronJob Deployment
 - [ ] CronJob manifest with proper scheduling, resource limits, and concurrency policy
