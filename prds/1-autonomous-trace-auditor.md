@@ -1,6 +1,6 @@
 # PRD: Autonomous Trace Auditor
 
-**Issue**: [#1](https://github.com/insidemedia/trace-auditor/issues/1)
+**Issue**: [#1](https://github.com/insidemedia-dev/trace-auditor/issues/1)
 **Priority**: High
 **Status**: Draft
 **Created**: 2026-05-14
