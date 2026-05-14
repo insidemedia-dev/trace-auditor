@@ -43,7 +43,7 @@ class TraceIngestionClient:
             for trace in response.data:
                 # Calculate latency
                 latency = 0.0
-                if trace.timestamp and trace.updated_at:
+                if trace.timestamp and hasattr(trace, 'updated_at') and trace.updated_at:
                     latency = (trace.updated_at - trace.timestamp).total_seconds() * 1000
 
                 parsed_traces.append(
