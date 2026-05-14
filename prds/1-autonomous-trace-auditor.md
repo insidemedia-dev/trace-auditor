@@ -144,9 +144,9 @@ class TraceAuditResult(BaseModel):
 - [x] Local development working with `.env` configuration
 
 ### Milestone 2: Langfuse Trace Ingestion
-- [ ] Langfuse SDK client connects and authenticates
-- [ ] Fetch traces by time window with error/latency filters
-- [ ] Extract relevant fields from trace objects for analysis
+- [x] Langfuse SDK client connects and authenticates
+- [x] Fetch traces by time window with error/latency filters
+- [x] Extract relevant fields from trace objects for analysis
 
 ### Milestone 3: Pydantic AI Analysis Pipeline
 - [ ] Pydantic AI agent configured with LiteLLM endpoint
