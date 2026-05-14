@@ -13,4 +13,6 @@ COPY src/ ./src/
 RUN useradd -m auditor
 USER auditor
 
+ENV PYTHONPATH=/app/src
+
 CMD ["python", "-m", "trace_auditor"]

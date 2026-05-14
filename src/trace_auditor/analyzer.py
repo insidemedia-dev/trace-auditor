@@ -23,7 +23,7 @@ class TraceAnalyzer:
         self.agent = Agent(
             model_name,
             model_settings={'base_url': base_url},
-            result_type=TraceAuditResult,
+            output_type=TraceAuditResult,
             system_prompt=(
                 "You are an expert AI Observability Engineer. Your job is to analyze failed "
                 "or slow LLM traces, determine the root cause of the issue, and "
