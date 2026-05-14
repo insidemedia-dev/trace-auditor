@@ -140,9 +140,9 @@ class TraceAuditResult(BaseModel):
 - [x] Root cause analysis prompt tuned for accuracy
 
 ### Milestone 4: Kubernetes CronJob Deployment
-- [ ] CronJob manifest with proper scheduling, resource limits, and concurrency policy
-- [ ] Secrets management for Langfuse and LiteLLM credentials
-- [ ] Container image built and pushed to registry
+- [x] CronJob manifest with proper scheduling, resource limits, and concurrency policy
+- [x] Secrets management for Langfuse and LiteLLM credentials
+- [x] Container image built and pushed to registry
 
 ### Milestone 5: Integration Testing & Validation
 - [ ] End-to-end test with real Langfuse traces on dss-k3s-01
