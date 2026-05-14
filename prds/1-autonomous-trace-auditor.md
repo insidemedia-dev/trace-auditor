@@ -2,7 +2,7 @@
 
 **Issue**: [#1](https://github.com/insidemedia/trace-auditor/issues/1)
 **Priority**: High
-**Status**: Draft
+**Status**: In Progress
 **Created**: 2026-05-14
 **Author**: @insidemedia
 
@@ -139,9 +139,9 @@ class TraceAuditResult(BaseModel):
 ## Milestones
 
 ### Milestone 1: Project Scaffolding & Local Dev
-- [ ] Python project structure with `pyproject.toml` (Pydantic AI, Langfuse SDK, httpx)
-- [ ] Dockerfile for minimal Python container
-- [ ] Local development working with `.env` configuration
+- [x] Python project structure with `pyproject.toml` (Pydantic AI, Langfuse SDK, httpx)
+- [x] Dockerfile for minimal Python container
+- [x] Local development working with `.env` configuration
 
 ### Milestone 2: Langfuse Trace Ingestion
 - [ ] Langfuse SDK client connects and authenticates
