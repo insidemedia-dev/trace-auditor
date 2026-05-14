@@ -88,12 +88,12 @@ class TraceAuditResult(BaseModel):
 
 ## Success Criteria
 
-- [ ] CronJob runs reliably every 15 minutes without manual intervention
+- [x] CronJob runs reliably every 15 minutes without manual intervention
 - [x] Successfully connects to Langfuse and fetches recent error traces
 - [x] Pydantic AI produces valid, structured JSON output for every analyzed trace
 - [x] Root cause classifications are meaningful and actionable (not generic)
 - [x] Resource usage stays within defined limits (no OOM kills)
-- [ ] Zero impact on cluster stability — fully transient workload
+- [x] Zero impact on cluster stability — fully transient workload
 
 ## Risk Assessment
 
@@ -150,6 +150,6 @@ class TraceAuditResult(BaseModel):
 - [x] Confirm resource usage stays within limits across multiple runs
 
 ### Milestone 6: Documentation & Operational Readiness
-- [ ] README with setup, configuration, and troubleshooting guide
-- [ ] Deployment instructions for K3s cluster
-- [ ] Runbook for common failure modes
+- [x] README with setup, configuration, and troubleshooting guide
+- [x] Deployment instructions for K3s cluster
+- [x] Runbook for common failure modes
