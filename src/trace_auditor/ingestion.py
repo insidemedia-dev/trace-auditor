@@ -33,7 +33,6 @@ class TraceIngestionClient:
             # In a production environment, you might also query by latency thresholds.
             response = self.client.api.trace.list(
                 from_timestamp=from_timestamp,
-                tags=["error"], # Assumes LiteLLM or your app tags failed requests
                 limit=50
             )
             
