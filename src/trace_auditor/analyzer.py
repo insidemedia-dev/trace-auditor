@@ -20,9 +20,18 @@ class TraceAnalyzer:
         base_url = os.getenv("LLM_BASE_URL", "http://litellm.default.svc.cluster.local:4000/v1")
         model_name = os.getenv("LLM_MODEL", "openai:hosted-sglang-model")
         
+        from pydantic_ai.models.openai import OpenAIModel
+        
+        # Strip the 'openai:' prefix if it exists, as OpenAIModel doesn't expect it
+        clean_model_name = model_name.replace("openai:", "")
+        
+        model = OpenAIModel(
+            clean_model_name,
+            base_url=base_url
+        )
+        
         self.agent = Agent(
-            model_name,
-            model_settings={'base_url': base_url},
+            model,
             output_type=TraceAuditResult,
             system_prompt=(
                 "You are an expert AI Observability Engineer. Your job is to analyze failed "
