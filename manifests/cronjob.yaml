@@ -15,8 +15,8 @@ spec:
           restartPolicy: Never
           containers:
           - name: auditor
-            image: ghcr.io/insidemedia/trace-auditor:0.1.0 # Update registry if needed
-            imagePullPolicy: Always
+            image: trace-auditor:0.1.0 # Using local imported image
+            imagePullPolicy: Never
             envFrom:
             - secretRef:
                 name: trace-auditor-secrets
